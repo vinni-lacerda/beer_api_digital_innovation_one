@@ -1,4 +1,4 @@
-package one.digitalinnovation.beerstock.builder;
+package one.digitalinnovation.beerstock.dto;
 
 import one.digitalinnovation.beerstock.dto.BeerDTO;
 import one.digitalinnovation.beerstock.enums.BeerType;
@@ -27,7 +27,7 @@ public class BeerDTOBuilder {
         return new BeerDTOBuilder();
     }
 
-    public BeerDTO buildBeerDTO() {
+    public BeerDTO build() {
         return this.beerDTO;
     }
 }
