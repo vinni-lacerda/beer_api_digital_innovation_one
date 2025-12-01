@@ -1,40 +1,34 @@
 package one.digitalinnovation.beerstock.builder;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import lombok.Builder;
 import one.digitalinnovation.beerstock.dto.BeerDTO;
 import one.digitalinnovation.beerstock.enums.BeerType;
 
-@Builder
 public class BeerDTOBuilder {
+    private static final long ID = 1L;
+    private static final String NAME = "Heineken";
+    private static final int QUANTITY = 10;
+    private static final int MAX = 50;
+    private static final String BRAND = "Heineken";
+    private static final String TYPE = "ALE";
 
-    @Builder.Default
-    private Long id = 1L;
+    private BeerDTO beerDTO;
 
-    @Builder.Default
-    private String name = "Brahma";
+    public BeerDTOBuilder() {
+        beerDTO = new BeerDTO();
+        beerDTO.setId(ID);
+        beerDTO.setName(NAME);
+        beerDTO.setQuantity(QUANTITY);
+        beerDTO.setMax(MAX);
+        beerDTO.setBrand(BRAND);
+        beerDTO.setType(BeerType.valueOf(TYPE));
+    }
 
-    @Builder.Default
-    private String brand = "Ambev";
+    public static BeerDTOBuilder builder() {
+        return new BeerDTOBuilder();
+    }
 
-    @Builder.Default
-    private int max = 50;
-
-    @Builder.Default
-    private int quantity = 10;
-
-    @Builder.Default
-    private BeerType type = BeerType.LAGER;
-
-    public BeerDTO toBeerDTO() {
-        return new BeerDTO(id,
-                name,
-                brand,
-                max,
-                quantity,
-                type);
+    // 🔥 Nome que o teste espera
+    public BeerDTO build() {
+        return this.beerDTO;
     }
 }
