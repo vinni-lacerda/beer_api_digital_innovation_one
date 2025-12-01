@@ -1,56 +1,152 @@
-<h2>Digital Innovation: Expert class - Desenvolvimento de testes unitários para validar uma API REST de gerenciamento de estoques de cerveja.</h2>
+# 🍺 Beerstock API — Controle de Estoque de Cervejas
 
-Nesta live coding, vamos aprender a testar, unitariamente, uma API REST para o gerenciamento de estoques de cerveja. Vamos desenvolver testes unitários para validar o nosso sistema de gerenciamento de estoques de cerveja, e também apresentar os principais conceitos e vantagens de criar testes unitários com JUnit e Mockito. Além disso, vamos também mostrar como desenvolver funcionalidades da nossa API através da prática do TDD.
+Projeto desenvolvido como parte do **DIO - Santander Bootcamp Java**, focado em **Spring Boot**, **JPA/Hibernate**, **TDD** e **Testes Unitários com JUnit 5 + Mockito**.
 
-Durante a sessão, serão abordados os seguintes tópicos:
+---
 
-* Baixar um projeto através do Git para desenolver nossos testes unitários. 
-* Apresentação conceitual sobre testes: a pirâmide dos tipos de testes, e também a importância de cada tipo de teste durante o ciclo de desenvolvimento.
-* Foco nos testes unitários: mostrar o porque é importante o desenvolvimento destes tipos de testes como parte do ciclo de desenvolvimento de software.
-* Principais frameworks para testes unitários em Java: JUnit, Mockito e Hamcrest. 
-* Desenvolvimento de testes unitários para validação de funcionalides básicas: criação, listagem, consulta por nome e exclusão de cervejas.
-* TDD: apresentação e exemplo prático em 2 funcionaliades importantes: incremento e decremento do número de cervejas no estoque.
+## 📌 Sobre o Projeto
 
-Para executar o projeto no terminal, digite o seguinte comando:
+A **Beerstock API** é uma aplicação REST para gerenciar o estoque de cervejas.
+Este projeto demonstra:
 
-```shell script
-mvn spring-boot:run 
+* Desenvolvimento de API REST com **Spring Boot**
+* Persistência de dados com **JPA/Hibernate**
+* Mapeamento DTO ↔ Entity com **MapStruct**
+* Testes unitários com **JUnit 5**
+* Testes de serviços usando **Mockito**
+* Validações e exceções customizadas
+* Conceitos práticos de **TDD (Test-Driven Development)**
+
+---
+
+## 🛠 Tecnologias Utilizadas
+
+* **Java 17**
+* **Spring Boot 3**
+* **Spring Data JPA**
+* **H2 Database**
+* **MapStruct**
+* **JUnit 5**
+* **Mockito**
+* **Hamcrest**
+
+---
+
+## 📁 Estrutura da API
+
+A API permite operações de CRUD e manipulação de estoque:
+
+### Endpoints Principais
+
+| Método   | Rota                           | Descrição                |
+| -------- | ------------------------------ | ------------------------ |
+| `POST`   | `/api/v1/beers`                | Cadastrar nova cerveja   |
+| `GET`    | `/api/v1/beers/{name}`         | Buscar cerveja pelo nome |
+| `GET`    | `/api/v1/beers`                | Listar todas             |
+| `DELETE` | `/api/v1/beers/{id}`           | Deletar cerveja          |
+| `PATCH`  | `/api/v1/beers/{id}/increment` | Incrementar estoque      |
+| `PATCH`  | `/api/v1/beers/{id}/decrement` | Reduzir estoque          |
+
+---
+
+## 🧪 Testes Unitários
+
+O projeto implementa testes completos na camada **Service**, cobrindo:
+
+### ✔ Criação de cerveja
+
+Teste valida:
+
+* Salvamento
+* Conversão DTO ↔ Entity
+* Verificação de duplicidade
+
+### ✔ Busca por nome (sucesso e falha)
+
+### ✔ Listagem (lista cheia e vazia)
+
+### ✔ Exclusão por ID
+
+### ✔ Incremento de estoque
+
+* Dentro do limite
+* Acima do limite → dispara exceção
+
+### ✔ (Opcional) Decremento de estoque
+
+* Dentro do limite
+* Abaixo de zero → exceção
+
+Os testes utilizam:
+
+* Mockito (`when`, `thenReturn`, `verify`)
+* Assertions do Hamcrest
+* `assertThrows` do JUnit
+
+---
+
+## ▶️ Como Executar
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/[SEU_USUARIO]/beerstock.git
+cd beerstock
 ```
 
-Para executar a suíte de testes desenvolvida durante a live coding, basta executar o seguinte comando:
+### 2. Rodar o projeto
 
-```shell script
-mvn clean test
+```bash
+mvn spring-boot:run
 ```
 
-Após executar o comando acima, basta apenas abrir o seguinte endereço e visualizar a execução do projeto:
+### 3. Acessar o H2 Console
 
 ```
-http://localhost:8080/api/v1/beers
+http://localhost:8080/h2-console
 ```
 
-São necessários os seguintes pré-requisitos para a execução do projeto desenvolvido durante a aula:
+---
 
-* Java 14 ou versões superiores.
-* Maven 3.6.3 ou versões superiores.
-* Intellj IDEA Community Edition ou sua IDE favorita.
-* Controle de versão GIT instalado na sua máquina.
-* Muita vontade de aprender e compartilhar conhecimento :)
+## 🧪 Rodando os Testes
 
-Abaixo, seguem links bem bacanas, sobre tópicos mencionados durante a aula:
+Para executar todos os testes unitários:
 
-* [SDKMan! para gerenciamento e instalação do Java e Maven](https://sdkman.io/)
-* [Referência do Intellij IDEA Community, para download](https://www.jetbrains.com/idea/download)
-* [Palheta de atalhos de comandos do Intellij](https://resources.jetbrains.com/storage/products/intellij-idea/docs/IntelliJIDEA_ReferenceCard.pdf)
-* [Site oficial do Spring](https://spring.io/)
-* [Site oficial JUnit 5](https://junit.org/junit5/docs/current/user-guide/)
-* [Site oficial Mockito](https://site.mockito.org/)
-* [Site oficial Hamcrest](http://hamcrest.org/JavaHamcrest/)
-* [Referências - testes em geral com o Spring Boot](https://www.baeldung.com/spring-boot-testing)
-* [Referência para o padrão arquitetural REST](https://restfulapi.net/)
-* [Referência pirâmide de testes - Martin Fowler](https://martinfowler.com/articles/practical-test-pyramid.html#TheImportanceOftestAutomation)
+```bash
+mvn test
+```
 
-[Neste link](https://drive.google.com/file/d/1KPh19mvyKirorOI-UsEYHKkmZpet3Ks6/view?usp=sharing), seguem os slides apresentados como o roteiro utilizado para o desenvolvimento do projeto da nossa sessão.
+---
 
+## 📄 Estrutura do Projeto
 
+```
+src
+├── main
+│   ├── java/one.digitalinnovation.beerstock
+│   │   ├── controller
+│   │   ├── dto
+│   │   ├── entity
+│   │   ├── service
+│   │   ├── repository
+│   │   └── mapper
+│   └── resources
+│       └── application.properties
+└── test
+    └── java/one.digitalinnovation.beerstock/service
+        └── BeerServiceTest.java
+```
 
+---
+
+## 🏁 Conclusão
+
+Este projeto demonstra o uso prático de **Spring Boot**, **JPA**, **Mockito** e **JUnit**, reforçando conceitos essenciais de desenvolvimento backend moderno com **Java**.
+
+Sinta-se à vontade para contribuir, melhorar ou adaptar o projeto para estudos!
+
+---
+
+## 👤 Autor
+
+Feito por **Vinicius Lacerda** — focado em backend Java e sempre estudando boas práticas, testes e arquitetura.
